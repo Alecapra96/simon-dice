@@ -9,7 +9,6 @@ $btnEmpezar.addEventListener("click",comenzarGame);
 function comenzarGame(){
     manejarRondas();
 }
-
 function manejarRondas(){
     $estado.innerText="turno de la maquina";
     let nuevoColor = nuevoCuadroRandom();
@@ -21,8 +20,10 @@ function manejarRondas(){
             resaltar(color)
         },retrasoIndex);
     });
-    let retrasoMaquina = 1000 + (contador*1000);
+    let retrasoMaquina = (1+contador)*1000;
     contador++;
+    console.log(patronUsuario+"inicio");
+
     $contador.innerText="nivel = " + contador;
     setTimeout(function(){
         movimientoUsuario();
@@ -32,9 +33,9 @@ function manejarRondas(){
     setTimeout(function(){
         console.log(patronMaquina + " patronMaquina");
         console.log(patronUsuario + " patronUsuario");
-        compararPatrones(patronMaquina,patronUsuario);//tengo que arreglar la comparacion , esta mal
+        compararPatrones(patronMaquina,patronUsuario);
     },retrasoJugador+retrasoMaquina);   //aca si el jugador se tarda mas de esto muere el simon
-
+    patronUsuario = [];
 }
 function resaltar (color){
     color.style.opacity = 1;
@@ -46,9 +47,6 @@ function resaltar (color){
 }
 function movimientoUsuario(){
     $estado.innerText="turno del usuario";
-  
-  
-
     document.querySelectorAll(".panel").forEach(function(color){
         color.addEventListener("click",secuenciaUsuario);
     });
@@ -60,19 +58,22 @@ function secuenciaUsuario(e){
 
 }
 function compararPatrones(patronMaquina,patronUsuario){
-    for(let i =0; i < patronMaquina.length;i++){
-        for(let j =0; j < patronUsuario.length;j++){
-            if(patronMaquina[i] == patronUsuario[j]){
-                patronUsuario = [];
-                manejarRondas();
-            }
-            else{
-                alert("perdiste o algo anda mal");
-                reiniciarGame();
-            }
-        }
+    let contador1=0;
+for (x=0;x<patronMaquina.length;x++){
+    console.log(patronMaquina[x])
+    console.log(patronUsuario[x])
+    if (patronMaquina[x] === patronUsuario[x]){
+    }else{
+        contador1++;
     }
+}
+if (contador1>=1){
+alert("perdiste");
+return location.reload();
 
+}else{
+    return manejarRondas();
+}
 } 
 function nuevoCuadroRandom(){
     let random = Math.floor(Math.random() * (4 - 1 + 1) ) + 1;
@@ -92,11 +93,4 @@ function nuevoCuadroRandom(){
         const cuadroAmarillo=document.querySelector(".panel-top-derecha");
         return cuadroAmarillo;
     }
-}
-function reiniciarGame(){
-    patronMaquina = [];
-    patronUsuario = [];
-    contador= 0;
-    $btnEmpezar.addEventListener("click",comenzarGame);
-
 }
