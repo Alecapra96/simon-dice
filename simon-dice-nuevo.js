@@ -32,7 +32,7 @@ function manejarRondas(){
     setTimeout(function(){
         console.log(patronMaquina + " patronMaquina");
         console.log(patronUsuario + " patronUsuario");
-        compararPatrones(patronMaquina,patronUsuario);//no importa si los patrones no son iguales, no entra a la funcion
+        compararPatrones(patronMaquina,patronUsuario);//tengo que arreglar la comparacion , esta mal
     },retrasoJugador+retrasoMaquina);   //aca si el jugador se tarda mas de esto muere el simon
 
 }
