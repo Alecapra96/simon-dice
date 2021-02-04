@@ -1,0 +1,38 @@
+body{
+}
+.tablero-superior{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.tablero{
+    text-align: center;
+    margin-top: 50px;
+}
+.panel{
+    height: 200px;
+    width: 200px;
+    display: inline-block;
+    opacity: 0.5;
+    transition: opacity 250ms;
+}
+.panel:hover{
+    box-shadow: inset 0px 0px 0px 4px black;
+    box-sizing: border-box;
+}
+.panel-top-izquierda{
+    background-color:green;
+    border-top-left-radius: 100%;
+}
+.panel-top-derecha{
+    background-color:yellow;
+    border-top-right-radius: 100%;   
+}
+.panel-botton-izquierda{
+    background-color: red;
+    border-bottom-left-radius: 100%;  
+}
+.panel-botton-derecha{
+    background-color:blue;
+    border-bottom-right-radius: 100%; 
+}
