@@ -4,7 +4,9 @@ let patronUsuario = [];
 let contador= 0;
 let index =0 ;
 let $estado=document.getElementById("estado");
+let $panelEstado=document.getElementById("panel-estado");
 let $contador=document.getElementById("nivel");
+"panel-estado"
 $btnEmpezar.addEventListener("click",comenzarGame);
 
 function comenzarGame(){
@@ -13,8 +15,8 @@ function comenzarGame(){
 }
 function manejarRondas(){
     index=0;
-    $estado.innerText="turno de la maquina";
-    
+    $estado.innerText="TURNO DE LA MAQUINA";
+    $panelEstado.style.background="rgb(170, 62, 54)";
     let nuevoColor = nuevoCuadroRandom();
     patronMaquina.push(nuevoColor);
     let retrasoJugador = (patronMaquina.length+1)*1000;
@@ -25,12 +27,12 @@ function manejarRondas(){
             resaltar(color)
         },retrasoIndex);
     });
-    let retrasoMaquina = (1+contador)*1000;
+    // let retrasoMaquina = (1+contador)*1000;
     contador++;
     patronUsuario = [];
     console.log(patronUsuario+" chekeo que patronUsuario este vacio antes de que se llene de vuelta");
 
-    $contador.innerText="nivel = " + contador;
+    $contador.innerText="NIVEL " + contador;
     setTimeout(function(){
         movimientoUsuario();
     },retrasoJugador);
@@ -51,7 +53,8 @@ function resaltar (color){
     },500);
 }
 function movimientoUsuario(){
-    $estado.innerText="turno del usuario";
+    $estado.innerText="TURNO DEL USUARIO";
+    $panelEstado.style.background="rgb(49, 141, 95)";
     document.querySelectorAll(".panel").forEach(function(color){
         color.addEventListener("click",secuenciaUsuario);
     });
@@ -119,10 +122,5 @@ function bloquearClicksUsuario(){
         color.onclick=function(){
             console.log("imputs bloqueados")
         }
-    });
-}
-function permitirClicksUsuario(){
-    document.querySelectorAll(".panel").forEach(function(color){
-        color.onclick=movimientoUsuario();
     });
 }

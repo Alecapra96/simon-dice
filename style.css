@@ -1,9 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #efecec;
+    
+    
 }
 .tablero-superior{
-    margin-top: 20px;
     display: flex;
     flex-direction: row;
+}
+#panel-boton-empezar{
+    display: flex;
+    width: 190px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    margin-left: 25px;
+    margin-right: 2px;
+}
+#boton-empezar{
+    text-decoration: none;
+    padding: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 1.4px solid #0016b0;
+}
+#boton-empezar:hover{
+    color: #1883ba;
+    background-color: #ffffff;
+}
+
+#panel-estado{
+    border: 2px solid black;
+    width: 850px;
+    padding-left: 10px;
+    text-align: center;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+#panel-nivel{
+    border: 2px solid black;
+    width: 200px;
+    text-align: center;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 .tablero{
     text-align: center;
