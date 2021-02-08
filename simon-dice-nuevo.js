@@ -9,11 +9,15 @@ let $contador=document.getElementById("nivel");
 "panel-estado"
 $btnEmpezar.addEventListener("click",comenzarGame);
 
+
 function comenzarGame(){
-    bloquearClicksUsuario()
+    esconderBtnEmpezar();
     manejarRondas();
+
+    
 }
 function manejarRondas(){
+    bloquearClicksUsuario();
     index=0;
     $estado.innerText="TURNO DE LA MAQUINA";
     $panelEstado.style.background="rgb(170, 62, 54)";
@@ -23,7 +27,6 @@ function manejarRondas(){
     patronMaquina.forEach(function(color,index){
         let retrasoIndex= (index +1) *1000;
         setTimeout(function(){
-            bloquearClicksUsuario()
             resaltar(color)
         },retrasoIndex);
     });
@@ -32,7 +35,7 @@ function manejarRondas(){
     patronUsuario = [];
     console.log(patronUsuario+" chekeo que patronUsuario este vacio antes de que se llene de vuelta");
 
-    $contador.innerText="NIVEL " + contador;
+    $contador.innerText="NIVEL #" + contador;
     setTimeout(function(){
         movimientoUsuario();
     },retrasoJugador);
@@ -68,8 +71,17 @@ function secuenciaUsuario(e){
     patronUsuario.push($color);
     console.log(patronUsuario[index])
     if (patronMaquina[index] != patronUsuario[index]){
-        alert("perdiste");
-        return location.reload();
+         
+    Swal.fire({
+        icon: 'error',
+        title: 'PERDISTE'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            return location.reload();
+        }else{
+            location.reload();   
+        } 
+    })
     }else{
         index++;
     }
@@ -80,6 +92,7 @@ function secuenciaUsuario(e){
         },1200);
     }
 }
+
 function compararPatrones(patronMaquina,patronUsuario){
     let contador1=0;
 for (x=0;x<patronMaquina.length;x++){
@@ -118,9 +131,16 @@ function nuevoCuadroRandom(){
     }
 }
 function bloquearClicksUsuario(){
-    document.querySelectorAll(".panel").forEach(function(color){
-        color.onclick=function(){
-            console.log("imputs bloqueados")
+    document.querySelectorAll(".panel").forEach(function($color){
+        $color.onclick=function(){
         }
     });
+}
+function esconderBtnEmpezar(){
+    console.log("entro")
+    $btnEmpezar.innerText="REINICIAR"
+    $btnEmpezar.onclick=function(){
+        return location.reload();
+    }
+    
 }

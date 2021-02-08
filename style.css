@@ -57,7 +57,7 @@ body{
     width: 200px;
     display: inline-block;
     opacity: 0.5;
-    transition: opacity 250ms;
+    transition: opacity 380ms;
 }
 .panel:hover{
     box-shadow: inset 0px 0px 0px 4px black;
