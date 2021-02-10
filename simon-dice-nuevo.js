@@ -17,7 +17,6 @@ function comenzarGame(){
     
 }
 function manejarRondas(){
-    bloquearClicksUsuario();
     index=0;
     $estado.innerText="TURNO DE LA MAQUINA";
     $panelEstado.style.background="rgb(170, 62, 54)";
@@ -27,6 +26,7 @@ function manejarRondas(){
     patronMaquina.forEach(function(color,index){
         let retrasoIndex= (index +1) *1000;
         setTimeout(function(){
+            bloquearClicksUsuario();
             resaltar(color)
         },retrasoIndex);
     });
@@ -40,6 +40,7 @@ function manejarRondas(){
         movimientoUsuario();
     },retrasoJugador);
 
+    debugger;
   
     //   setTimeout(function(){
     //     console.log(patronMaquina + " patronMaquina");
@@ -133,6 +134,7 @@ function nuevoCuadroRandom(){
 function bloquearClicksUsuario(){
     document.querySelectorAll(".panel").forEach(function($color){
         $color.onclick=function(){
+            console.log("INPUT BLOQUEADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         }
     });
 }
